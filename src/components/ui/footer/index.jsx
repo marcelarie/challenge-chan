@@ -6,9 +6,7 @@ const Footer = () => {
         <SFooter>
             <div className="phantom" />
             <div className="footer">
-                <a href="#0">Git</a>
-                <a href="#0">Donations</a>
-                <a href="#0">etc</a>
+                <a href="https://github.com/marcelarie">My github</a>
             </div>
         </SFooter>
     )

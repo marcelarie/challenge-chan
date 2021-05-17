@@ -5,4 +5,5 @@ export default styled.nav`
     align-items: center;
     justify-content: space-around;
     border: 2px solid ${({ theme }) => theme.text};
+    position: relative;
 `
