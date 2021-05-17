@@ -8,9 +8,9 @@ export function signUpWithEmailRequest({ email, password }) {
             const { user } = await auth.createUserWithEmailAndPassword(email, password)
             console.log(user.uid)
 
-            const result = await signUp({ _id: user.uid, email })
-            console.log(result)
-            // dispatch(setUser(data.data))
+            const { data } = await signUp({ _id: user.uid, email })
+            console.log(data)
+            dispatch(setUser(data))
         } catch (error) {
             // dispatch(signUpError(error.message))
             console.log(error)
