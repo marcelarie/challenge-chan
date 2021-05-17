@@ -34,20 +34,24 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
 # Monday 17 May
 
 -   [ ] Design the database.
+-   [x] Create React and Redux base template.
+-   [x] Add Firebase auth
 -   [ ] Create Express server with the endpoints.
 -   [ ] Finish the Whole API
+-   [ ] Setup cloudinary
 
 # Tue 18 May
 
--   [ ] Create React and Redux base template.
 -   [ ] Create the Landing Page
--   [ ] Create the Register component.
+-   [x] Create the Register component.
 -   [ ] Create the imageboard page.
 -   [ ] Create search bar.
 -   [ ] Create user page.
+-   [ ] Save Redux state on local storage
+-   [ ] Clean local storage on logout
 
 # Wednesday 19 May
 
-- [ ] Deploy (? maybe)
-- [ ] Debugging
-- [ ] Delivery
+-   [ ] Deploy (? maybe)
+-   [ ] Debugging
+-   [ ] Delivery

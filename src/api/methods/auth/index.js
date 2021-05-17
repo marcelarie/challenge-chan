@@ -1,9 +1,9 @@
-import httpClient from '../../http-client'
+import httpClient, {methods} from '../../http-client'
 
 export function signUp(data) {
     return httpClient({
         url: '/user/sign-up',
-        method: 'POST',
+        method: methods.POST,
         data,
     })
 }
