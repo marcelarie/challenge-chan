@@ -9,7 +9,6 @@ export function signUpWithEmailRequest({ email, password }) {
             console.log(user.uid)
 
             const { data } = await signUp({ _id: user.uid, email })
-            console.log(data)
             dispatch(setUser(data))
         } catch (error) {
             // dispatch(signUpError(error.message))
@@ -18,13 +17,24 @@ export function signUpWithEmailRequest({ email, password }) {
     }
 }
 
-// export function signInWithEmailRequest(email, password) {
-//     return async function loginThunk(dispatch) {
-//         dispatch(signUpRequest())
-//         try {
-//             await auth.singInWithEmailAndPassword(email, password)
-//         } catch (error) {
-//             dispatch(signUpError(error.message))
-//         }
-//     }
-// }
+export function signInWithEmailRequest({ email, password }) {
+    return async (dispatch) => {
+        // dispatch(signUpRequest())
+        try {
+            await auth.signInWithEmailAndPassword(email, password)
+
+            dispatch(setUser({ email }))
+        } catch (error) {
+            // dispatch(signUpError(error.message))
+            console.log(error)
+        }
+    }
+}
+
+export function signOut() {
+    try {
+        auth.signOut()
+    } catch (error) {
+        console.log(error)
+    }
+}

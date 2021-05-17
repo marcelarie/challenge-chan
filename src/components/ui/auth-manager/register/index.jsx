@@ -6,6 +6,7 @@ const Register = () => {
         const dispatch = useDispatch()
     const emailRef = useRef()
     const passwordRef = useRef()
+    const usernameRef = useRef()
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -14,6 +15,7 @@ const Register = () => {
             signUpWithEmailRequest({
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
+                username: usernameRef.current.value,
             })
         )
     }
@@ -24,6 +26,8 @@ const Register = () => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="text" ref={emailRef} />
+                <label htmlFor="email">Username</label>
+                <input type="text" ref={usernameRef} />
                 <label htmlFor="password">Password</label>
                 <input type="password" ref={passwordRef} />
                 <button type="submit">Sign Up</button>

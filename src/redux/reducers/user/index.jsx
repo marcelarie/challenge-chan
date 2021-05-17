@@ -6,7 +6,7 @@ const initialState = {
     username: null,
 }
 
-export default (state = initialState, { type, payload }) => {
+const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case UserTypes.SET_USER:
             console.log(payload)
@@ -15,3 +15,5 @@ export default (state = initialState, { type, payload }) => {
             return state
     }
 }
+
+export default userReducer
