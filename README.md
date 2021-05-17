@@ -1,1 +1,1 @@
-# challenge-chan
+# create-react-app Minimal Template
