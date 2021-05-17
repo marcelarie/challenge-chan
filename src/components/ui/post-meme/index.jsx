@@ -1,19 +1,30 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { postMeme } from '../../../redux/actions/meme'
 
 const PostMeme = () => {
     const dispatch = useDispatch()
-    const memeTitleRef = useRef()
+    const titleRef = useRef()
     const descriptionRef = useRef()
+    const topicRef = useRef()
+
+    const extractValue = (ref) => ref.current.value
+
+    const [file, setFile] = useState('')
+
+    const handleFileChange = (event) => {
+        event.preventDefault()
+        setFile(event.target.files[0])
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
         dispatch(
             postMeme({
-                name: memeTitleRef.current.value,
-                description: descriptionRef.current.value,
-                topic: 'topic',
-                imageUrl: 'url'
+                file,
+                name: extractValue(titleRef),
+                description: extractValue(descriptionRef),
+                topic: extractValue(topicRef),
             })
         )
     }
@@ -22,10 +33,13 @@ const PostMeme = () => {
         <div>
             <h1>post a meme</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="meme-title">Title</label>
-                <input type="text" ref={memeTitleRef} />
+                <input type="file" onChange={handleFileChange} />
+                <label htmlFor="meme-title">title</label>
+                <input type="text" ref={titleRef} />
                 <label htmlFor="meme-description">Description</label>
                 <input type="text" ref={descriptionRef} />
+                <label htmlFor="meme-topic">Topic</label>
+                <input type="text" ref={topicRef} />
                 <button type="submit">Submit</button>
             </form>
         </div>

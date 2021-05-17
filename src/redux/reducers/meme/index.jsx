@@ -13,7 +13,6 @@ export default (state = initialState, { type, payload }) => {
         case MemeTypes.POST_MEME_SUCCESS:
             return { ...state, meme: payload, loading: false, error: false }
         case MemeTypes.POST_MEME_ERROR:
-            console.log(payload)
             return { ...state, error: true, loading: false }
         default:
             return state
