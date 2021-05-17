@@ -1,40 +1,70 @@
 import { auth } from '../../../firebase'
 import { signUp } from '../../../api/methods/auth'
-import { setUser } from '../../../redux/actions/user'
+import { setUser } from '../../actions/user'
+import { AuthTypes } from '../../types/auth'
+
+export const signUpRequest = () => ({
+    type: AuthTypes.SIGN_UP_REQUEST,
+})
+
+export const signUpSuccess = (payload) => ({
+    type: AuthTypes.SIGN_UP_SUCCESS,
+    payload,
+})
+
+export const signUpError = (payload) => ({
+    type: AuthTypes.SIGN_OUT_ERROR,
+    payload,
+})
 
 export function signUpWithEmailRequest({ email, password }) {
     return async (dispatch) => {
+        dispatch(signUpRequest())
         try {
             const { user } = await auth.createUserWithEmailAndPassword(email, password)
-            console.log(user.uid)
 
             const { data } = await signUp({ _id: user.uid, email })
             dispatch(setUser(data))
         } catch (error) {
-            // dispatch(signUpError(error.message))
-            console.log(error)
+            dispatch(signUpError(error.message))
         }
     }
 }
 
 export function signInWithEmailRequest({ email, password }) {
     return async (dispatch) => {
-        // dispatch(signUpRequest())
+        dispatch(signUpRequest())
         try {
             await auth.signInWithEmailAndPassword(email, password)
 
             dispatch(setUser({ email }))
         } catch (error) {
-            // dispatch(signUpError(error.message))
-            console.log(error)
+            dispatch(signUpError(error.message))
         }
     }
 }
 
 export function signOut() {
+    return async (dispatch) => {
+    dispatch(signOutRequest())
     try {
         auth.signOut()
+        dispatch(signOutSuccess())
     } catch (error) {
-        console.log(error)
+        dispatch(signOutError(error.message))
     }
 }
+}
+
+export const signOutRequest = () => ({
+    type: AuthTypes.SIGN_OUT_REQUEST,
+})
+
+export const signOutSuccess = () => ({
+    type: AuthTypes.SIGN_OUT_SUCCESS,
+})
+
+export const signOutError = (payload) => ({
+    type: AuthTypes.SIGN_OUT_ERROR,
+    payload,
+})
