@@ -10,7 +10,7 @@ const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case UserTypes.SET_USER:
             console.log(payload)
-            return { ...state, ...payload }
+            return { ...state, email: payload.email }
         default:
             return state
     }

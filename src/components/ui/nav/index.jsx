@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { HOME } from '../../../routes'
 import AuthManager from '../auth-manager'
+import UserManager from '../user-manager'
 
 import ThemeToggle from '../theme-toggle'
 import SNav from './styled'
 
 const Nav = () => {
     const [showAuth, setShowAuth] = useState(false)
+    const { authenticated } = useSelector(({ auth }) => auth)
 
     const handleAuthToggle = () => {
         setShowAuth(!showAuth)
-}
+    }
 
     return (
         <SNav>
@@ -20,7 +23,7 @@ const Nav = () => {
                 <button>/main</button>
             </NavLink>
             <button onClick={handleAuthToggle}>Login/Sign Up</button>
-            <AuthManager show={showAuth} />
+            {!authenticated ? <AuthManager show={showAuth} /> : <UserManager />}
             <ThemeToggle />
         </SNav>
     )

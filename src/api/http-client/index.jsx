@@ -16,6 +16,5 @@ export default async function httpClient({ url, method, data }) {
             Authorization: `Bearer ${token}`,
         },
     })
-    console.log(response)
     return response
 }

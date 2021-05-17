@@ -7,9 +7,8 @@ export const signUpRequest = () => ({
     type: AuthTypes.SIGN_UP_REQUEST,
 })
 
-export const signUpSuccess = (payload) => ({
+export const signUpSuccess = () => ({
     type: AuthTypes.SIGN_UP_SUCCESS,
-    payload,
 })
 
 export const signUpError = (payload) => ({
@@ -23,8 +22,8 @@ export function signUpWithEmailRequest({ email, password }) {
         try {
             const { user } = await auth.createUserWithEmailAndPassword(email, password)
 
-            const { data } = await signUp({ _id: user.uid, email })
-            dispatch(setUser(data))
+            await signUp({ _id: user.uid, email })
+        dispatch(signUpSuccess())
         } catch (error) {
             dispatch(signUpError(error.message))
         }
@@ -38,6 +37,7 @@ export function signInWithEmailRequest({ email, password }) {
             await auth.signInWithEmailAndPassword(email, password)
 
             dispatch(setUser({ email }))
+        dispatch(signUpSuccess())
         } catch (error) {
             dispatch(signUpError(error.message))
         }
@@ -46,14 +46,14 @@ export function signInWithEmailRequest({ email, password }) {
 
 export function signOut() {
     return async (dispatch) => {
-    dispatch(signOutRequest())
-    try {
-        auth.signOut()
-        dispatch(signOutSuccess())
-    } catch (error) {
-        dispatch(signOutError(error.message))
+        dispatch(signOutRequest())
+        try {
+            auth.signOut()
+            dispatch(signOutSuccess())
+        } catch (error) {
+            dispatch(signOutError(error.message))
+        }
     }
-}
 }
 
 export const signOutRequest = () => ({
