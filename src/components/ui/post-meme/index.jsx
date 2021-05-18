@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { postMeme } from '../../../redux/actions/meme'
+import './styles.scss'
 
 const PostMeme = () => {
     const dispatch = useDispatch()
@@ -30,17 +31,17 @@ const PostMeme = () => {
     }
 
     return (
-        <div>
+        <div className="post-meme">
             <h1>post a meme</h1>
             <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <label htmlFor="meme-title">title</label>
+                <label htmlFor="meme-title">Name</label>
                 <input type="text" ref={titleRef} />
-                <label htmlFor="meme-description">Description</label>
-                <input type="text" ref={descriptionRef} />
+                <label htmlFor="meme-description">Comment</label>
+                <textarea type="text" ref={descriptionRef} />
                 <label htmlFor="meme-topic">Topic</label>
                 <input type="text" ref={topicRef} />
-                <button type="submit">Submit</button>
+                <button type="submit">Post</button>
+                <input type="file" onChange={handleFileChange} />
             </form>
         </div>
     )

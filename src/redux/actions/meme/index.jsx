@@ -21,7 +21,7 @@ export function postMeme(body) {
         const { file, ...rest } = body
         const { data } = await uploadFile(file)
         try {
-            const result = await post({ ...rest, imageUrl: data.url })
+            await post({ ...rest, imageUrl: data.url })
             dispatch(postMemeSuccess())
         } catch (error) {
             dispatch(postMemeError(error))
