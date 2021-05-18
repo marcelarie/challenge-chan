@@ -18,9 +18,10 @@ export const postMemeSuccess = () => ({
 export function postMeme(body) {
     return async (dispatch) => {
         dispatch(postMemeRequest())
-        uploadFile(body.file)
+        const { file, ...rest } = body
+        const { data } = await uploadFile(file)
         try {
-            // const result = await post(body)
+            const result = await post({ ...rest, imageUrl: data.url })
             dispatch(postMemeSuccess())
         } catch (error) {
             dispatch(postMemeError(error))

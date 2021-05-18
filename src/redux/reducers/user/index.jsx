@@ -2,7 +2,7 @@ import { UserTypes } from '../../types/user'
 
 const initialState = {
     _id: null,
-    email: null,
+    email: '',
     username: null,
 }
 

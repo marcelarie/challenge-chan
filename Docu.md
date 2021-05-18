@@ -49,7 +49,7 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
 -   [ ] Create user page.
 -   [x] Create post meme component.
 -   [ ] Create comments comments.
--   [ ] Save Redux state on local storage
+-   [x] Save Redux state on local storage (?) bug: can save everything
 -   [ ] Clean local storage on logout
 
 
