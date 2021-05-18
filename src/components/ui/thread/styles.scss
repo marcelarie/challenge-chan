@@ -1,12 +1,38 @@
 .thread {
     display: flex;
     justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
     &__image {
         img {
             max-width: 200px;
         }
+        margin-right: 1rem;
     }
     &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         width: 100%;
+        word-wrap: break-word;
+        overflow: hidden;
+        &__header {
+            margin-bottom: 0.9rem;
+            font-weight: 600;
+            span {
+                font-weight: 400;
+            }
+        }
+        &__description {
+            flex: 2;
+        }
+        &__reply {
+            align-self: flex-end;
+            width: 60px;
+        }
+        &__comments {
+            margin: 1rem 0;
+            border: 1px solid red;
+        }
     }
 }

@@ -49,6 +49,7 @@ export function getMemes() {
         dispatch(getMemesRequest())
 
         const { data } = await getMemesMethod()
+        console.log( data)
         dispatch(getMemesSuccess(data))
         try {
         } catch (error) {

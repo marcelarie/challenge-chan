@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postMeme } from '../../../redux/actions/meme'
 import './styles.scss'
 
-const PostMeme = () => {
+const PostMeme = ({ id }) => {
     const dispatch = useDispatch()
     const titleRef = useRef()
     const descriptionRef = useRef()
@@ -21,29 +21,45 @@ const PostMeme = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        dispatch(
-            postMeme({
-                file,
-                name: extractValue(titleRef),
-                user: _id,
-                description: extractValue(descriptionRef),
-                topic: extractValue(topicRef),
-            })
-        )
+        const body = !id
+            ? {
+                  file,
+                  name: extractValue(titleRef),
+                  user: _id,
+                  description: extractValue(descriptionRef),
+                  topic: extractValue(topicRef),
+              }
+            : {
+                  file,
+                  user: _id,
+                  description: extractValue(descriptionRef),
+                  itsComment: true,
+                  commentId: id,
+              }
+        dispatch(postMeme(body))
     }
 
     return (
         <div className="post-meme">
-            <h1>post a meme</h1>
+            {id ? <h4>post a comment</h4> : <h1>post a meme</h1>}
+
             <form onSubmit={handleSubmit}>
-                <label htmlFor="meme-title">Name</label>
-                <input type="text" ref={titleRef} />
+                {!id && (
+                    <>
+                        <label htmlFor="meme-title">Name</label>
+                        <input type="text" required ref={titleRef} />
+                    </>
+                )}
                 <label htmlFor="meme-description">Comment</label>
-                <textarea type="text" ref={descriptionRef} />
-                <label htmlFor="meme-topic">Topic</label>
-                <input type="text" ref={topicRef} />
+                <textarea type="text" required ref={descriptionRef} />
+                {!id && (
+                    <>
+                        <label htmlFor="meme-topic">Topic</label>
+                        <input type="text" required ref={topicRef} />
+                    </>
+                )}
                 <button type="submit">Post</button>
-                <input type="file" onChange={handleFileChange} />
+                <input type="file" required onChange={handleFileChange} />
             </form>
         </div>
     )
