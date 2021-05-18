@@ -22,7 +22,8 @@ const Nav = () => {
             <NavLink to={HOME}>
                 <button>/main</button>
             </NavLink>
-            <button onClick={handleAuthToggle}>Login/Sign Up</button>
+            {!authenticated &&
+            <button onClick={handleAuthToggle}>Login/Sign Up</button> }
             {!authenticated ? <AuthManager show={showAuth} /> : <UserManager />}
             <ThemeToggle />
         </SNav>

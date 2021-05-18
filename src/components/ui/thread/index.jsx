@@ -5,7 +5,6 @@ import PostMeme from '../post-meme'
 
 const Thread = ({ meme }) => {
     const [showPostComment, setShowPostComment] = useState(false)
-    console.log(meme)
 
     function convertDate(meme) {
         const date = meme.createdAt || null
@@ -37,7 +36,12 @@ const Thread = ({ meme }) => {
                 </button>
                 {showPostComment && <PostMeme id={meme._id} />}
 
-                <div className="thread__content__comments">{meme.comments && meme.comments.map((comment) =>{ return<Thread meme={comment} />})}</div>
+                <div className="thread__content__comments">
+                    {meme.comments &&
+                        meme.comments.map((comment) => {
+                            return <Thread meme={comment} />
+                        })}
+                </div>
             </div>
         </SThread>
     )

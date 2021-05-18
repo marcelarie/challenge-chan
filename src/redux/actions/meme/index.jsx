@@ -13,13 +13,14 @@ export const postMemeError = (payload) => ({
 
 export const postMemeSuccess = (payload) => ({
     type: MemeTypes.POST_MEME_SUCCESS,
-    payload
+    payload,
 })
 
 export function postMeme(body) {
     return async (dispatch) => {
         dispatch(postMemeRequest())
         const { file, ...rest } = body
+        console.log( body)
         const { data } = await uploadFile(file)
         try {
             const result = await postMemeMethod({ ...rest, imageUrl: data.url })
@@ -49,7 +50,7 @@ export function getMemes() {
         dispatch(getMemesRequest())
 
         const { data } = await getMemesMethod()
-        console.log( data)
+        console.log(data)
         dispatch(getMemesSuccess(data))
         try {
         } catch (error) {
