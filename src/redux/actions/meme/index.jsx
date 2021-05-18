@@ -1,5 +1,5 @@
 import { MemeTypes } from '../../types/meme'
-import { postMeme as post } from '../../../api/methods/meme'
+import { postMemeMethod, getMemesMethod } from '../../../api/methods/meme'
 import uploadFile from '../../../services/cloudinary'
 
 export const postMemeRequest = () => ({
@@ -21,10 +21,38 @@ export function postMeme(body) {
         const { file, ...rest } = body
         const { data } = await uploadFile(file)
         try {
-            await post({ ...rest, imageUrl: data.url })
+            await postMemeMethod({ ...rest, imageUrl: data.url })
             dispatch(postMemeSuccess())
         } catch (error) {
             dispatch(postMemeError(error))
+        }
+    }
+}
+
+export const getMemesRequest = () => ({
+    type: MemeTypes.GET_MEMES_REQUEST,
+})
+
+export const getMemesError = (payload) => ({
+    type: MemeTypes.GET_MEMES_ERROR,
+    payload,
+})
+
+export const getMemesSuccess = (payload) => ({
+    type: MemeTypes.GET_MEMES_SUCCESS,
+    payload,
+})
+
+export function getMemes() {
+    return async (dispatch) => {
+        dispatch(getMemesRequest())
+
+        const { data } = await getMemesMethod()
+        console.log( data )
+        dispatch(getMemesSuccess(data))
+        try {
+        } catch (error) {
+            dispatch(getMemesError(error))
         }
     }
 }

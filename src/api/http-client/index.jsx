@@ -9,20 +9,26 @@ export const methods = {
     DELETE: 'DELETE',
 }
 
-export default async function httpClient({ url, method, data }) {
+export default async function httpClient({ url, method, data }, needsAuth = true) {
     const baseUrl = 'http://localhost:5001'
 
-    if (!auth.currentUser) return null
-    const token = await auth.currentUser.getIdToken()
+    if (!auth.currentUser) return { data: null }
+    const token = needsAuth ? await auth.currentUser.getIdToken() : null
+
+    const headers = needsAuth
+        ? {
+              Accept: 'application/json',
+              Authorization: `Bearer ${token}`,
+          }
+        : {
+              Accept: 'application/json',
+          }
 
     const response = await axios({
         url: baseUrl + url,
         method,
         data,
-        headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`,
-        },
+        headers
     })
     return response
 }
