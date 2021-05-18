@@ -1,4 +1,4 @@
-import httpClient, {methods} from '../../http-client'
+import httpClient, { methods } from '../../http-client'
 
 export function signUp(data) {
     return httpClient({
@@ -7,3 +7,4 @@ export function signUp(data) {
         data,
     })
 }
+

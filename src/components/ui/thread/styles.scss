@@ -1,8 +1,12 @@
 .thread {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     &__image {
+        img {
+            max-width: 200px;
+        }
     }
     &__content {
+        width: 100%;
     }
 }

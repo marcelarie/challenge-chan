@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { postMeme } from '../../../redux/actions/meme'
 import './styles.scss'
 
@@ -10,6 +10,7 @@ const PostMeme = () => {
     const topicRef = useRef()
 
     const extractValue = (ref) => ref.current.value
+    const { _id } = useSelector(({ user }) => user)
 
     const [file, setFile] = useState('')
 
@@ -24,6 +25,7 @@ const PostMeme = () => {
             postMeme({
                 file,
                 name: extractValue(titleRef),
+                user: _id,
                 description: extractValue(descriptionRef),
                 topic: extractValue(topicRef),
             })

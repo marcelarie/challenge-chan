@@ -10,7 +10,7 @@ const Landing = () => {
     const { authenticated } = useSelector(({ auth }) => auth)
     const [showPostMeme, setShowPostMeme] = useState(false)
 
-    const { memes } = useSelector(({ meme }) => meme)
+    const { memes, meme } = useSelector(({ meme }) => meme)
 
     const handlePostClick = (event) => {
         event.preventDefault()
@@ -19,7 +19,9 @@ const Landing = () => {
 
     useEffect(() => {
         dispatch(getMemes())
-    }, [])
+    }, [dispatch, meme])
+
+    useEffect(() => {}, [memes])
 
     return (
         <div className="landing">
@@ -34,7 +36,12 @@ const Landing = () => {
                 )}
                 {authenticated && showPostMeme && <PostMeme />}
             </div>
-            <div className="landing__main">{memes && memes.map((meme) => <Thread meme={meme} />)}</div>
+            <div className="landing__main">
+                {memes &&
+                    memes.map((meme) => {
+                        return <Thread key={meme._id} meme={meme} />
+                    })}
+            </div>
         </div>
     )
 }

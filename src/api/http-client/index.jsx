@@ -12,7 +12,7 @@ export const methods = {
 export default async function httpClient({ url, method, data }, needsAuth = true) {
     const baseUrl = 'http://localhost:5001'
 
-    if (!auth.currentUser) return { data: null }
+    if (needsAuth && !auth.currentUser) return { data: null }
     const token = needsAuth ? await auth.currentUser.getIdToken() : null
 
     const headers = needsAuth
@@ -28,7 +28,7 @@ export default async function httpClient({ url, method, data }, needsAuth = true
         url: baseUrl + url,
         method,
         data,
-        headers
+        headers,
     })
     return response
 }

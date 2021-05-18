@@ -5,10 +5,10 @@ const initialState = {
     error: null,
     loading: null,
 
-    memes: {}
+    memes: [],
 }
 
-export default (state = initialState, { type, payload }) => {
+const memeReducers = (state = initialState, { type, payload }) => {
     switch (type) {
         case MemeTypes.POST_MEME_REQUEST:
             return { ...state, loading: true }
@@ -20,9 +20,9 @@ export default (state = initialState, { type, payload }) => {
             return { ...state, loading: true }
         case MemeTypes.GET_MEMES_SUCCESS:
             return { ...state, memes: payload, loading: false, error: false }
-        case MemeTypes.GET_MEMES_REQUEST:
-            return { ...state, error: true, loading: false }
         default:
             return state
     }
 }
+
+export default memeReducers

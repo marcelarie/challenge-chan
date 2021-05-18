@@ -11,8 +11,9 @@ export const postMemeError = (payload) => ({
     payload,
 })
 
-export const postMemeSuccess = () => ({
+export const postMemeSuccess = (payload) => ({
     type: MemeTypes.POST_MEME_SUCCESS,
+    payload
 })
 
 export function postMeme(body) {
@@ -21,8 +22,8 @@ export function postMeme(body) {
         const { file, ...rest } = body
         const { data } = await uploadFile(file)
         try {
-            await postMemeMethod({ ...rest, imageUrl: data.url })
-            dispatch(postMemeSuccess())
+            const result = await postMemeMethod({ ...rest, imageUrl: data.url })
+            dispatch(postMemeSuccess(result.data))
         } catch (error) {
             dispatch(postMemeError(error))
         }
@@ -48,7 +49,6 @@ export function getMemes() {
         dispatch(getMemesRequest())
 
         const { data } = await getMemesMethod()
-        console.log( data )
         dispatch(getMemesSuccess(data))
         try {
         } catch (error) {
