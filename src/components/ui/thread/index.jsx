@@ -8,6 +8,7 @@ import { USER_PAGE } from '../../../routes'
 const Thread = ({ meme, itsComment }) => {
     const [showPostComment, setShowPostComment] = useState(false)
     const history = useHistory()
+    console.log( meme)
 
     function convertDate(meme) {
         const date = meme.createdAt || null
@@ -30,13 +31,16 @@ const Thread = ({ meme, itsComment }) => {
     const memeHeader = !itsComment ? `${meme.user ? meme.user.username : 'Anonymous'}, ` : `${meme.user ? meme.user.username : 'Anonymous'}`
     return (
         <SThread className="thread">
-            <div className="thread__image">{meme.imageUrl ? <img src={meme.imageUrl} alt={meme.name} /> : <br />}</div>
+            <div className="thread__image">
+                {meme.imageUrl ? <img src={meme.imageUrl} alt={meme.name} /> : <br />}
+                {meme.imageUrl ? <a href={meme.imageUrl}>Link to image</a> : <br />}
+            </div>
             <div className="thread__content">
                 <p className="thread__content__header">
                     <button type="button" onClick={handleUserPageClick}>
                         {memeHeader}
                     </button>
-                    <p>{meme.name}</p>
+                    {meme.name}
                     <span>{convertDate(meme)}</span>
                 </p>
                 <div className="thread__content__description">

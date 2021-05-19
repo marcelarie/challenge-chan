@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { HOME } from '../../../routes'
+import { HOME, OTHER_TOPIC } from '../../../routes'
 import AuthManager from '../auth-manager'
 import UserManager from '../user-manager'
 
@@ -22,6 +22,9 @@ const Nav = () => {
             <h1>challenge-chan</h1>
             <NavLink to={HOME}>
                 <button>/main</button>
+            </NavLink>
+            <NavLink to={OTHER_TOPIC}>
+                <button>/other-topic</button>
             </NavLink>
             <SearchBar />
             {!authenticated && <button onClick={handleAuthToggle}>Login/Sign Up</button>}

@@ -20,6 +20,9 @@ const Router = () => {
                 <Route path={SEARCH_PAGE}>
                     <SearchPage />
                 </Route>
+                <Route path={`${HOME}:topic`}>
+                    <Landing />
+                </Route>
                 <Route path={HOME}>
                     <Landing />
                 </Route>

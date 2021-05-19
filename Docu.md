@@ -16,7 +16,7 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
     -   **Information** of the **logged in user** ✅
         -   If you are not logged in, the **button** to log in will be **displayed** ✅
 -   **Page** of the **selected multimedia** element:
-    -   The **user can obtain the link** of the **multimedia resource** to include it on any **website**
+    -   The **user can obtain the link** of the **multimedia resource** to include it on any **website** ✅
 
 # Additional Features
 
@@ -55,10 +55,10 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
 -   [x] Fix undefined on comments
 -   [ ] Add zoom on image when clicking on them
 -   [x] Create search bar.
--   [ ] Create user page.
+-   [x] Create user page.
 -   [ ] Pages per topic
 -   [ ] Clean local storage on logout
 -   [ ] Redesign
--   [ ] Debugging
+-   [x] Debugging
 -   [ ] Delivery
 -   [ ] Deploy (? maybe)

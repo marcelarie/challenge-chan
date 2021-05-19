@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postMeme } from '../../../redux/actions/meme'
 import './styles.scss'
 
-const PostMeme = ({ id }) => {
+const PostMeme = ({ id, topic }) => {
     const dispatch = useDispatch()
     const titleRef = useRef()
     const descriptionRef = useRef()
-    const topicRef = useRef()
 
     const extractValue = (ref) => ref.current.value
     const { _id } = useSelector(({ user }) => user)
@@ -27,7 +26,7 @@ const PostMeme = ({ id }) => {
                   name: extractValue(titleRef),
                   user: _id,
                   description: extractValue(descriptionRef),
-                  topic: extractValue(topicRef),
+                  topic,
               }
             : {
                   file,
@@ -52,12 +51,6 @@ const PostMeme = ({ id }) => {
                 )}
                 <label htmlFor="meme-description">Comment</label>
                 <textarea type="text" required ref={descriptionRef} />
-                {!id && (
-                    <>
-                        <label htmlFor="meme-topic">Topic</label>
-                        <input type="text" required ref={topicRef} />
-                    </>
-                )}
                 <button type="submit">Post</button>
                 <input type="file" onChange={handleFileChange} />
             </form>

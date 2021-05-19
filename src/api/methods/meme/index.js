@@ -8,10 +8,10 @@ export function postMemeMethod(data) {
     })
 }
 
-export function getMemesMethod() {
+export function getMemesMethod(topic) {
     return httpClient(
         {
-            url: '/meme/all',
+            url: `/meme/all/${topic}`,
             method: methods.GET,
         },
         false

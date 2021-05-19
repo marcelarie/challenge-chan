@@ -44,11 +44,11 @@ export const getMemesSuccess = (payload) => ({
     payload,
 })
 
-export function getMemes() {
+export function getMemes(topic = 'main') {
     return async (dispatch) => {
         dispatch(getMemesRequest())
 
-        const { data } = await getMemesMethod()
+        const { data } = await getMemesMethod(topic)
         dispatch(getMemesSuccess(data))
         try {
         } catch (error) {
