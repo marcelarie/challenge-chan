@@ -1,0 +1,12 @@
+.search-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 20vw;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 1rem 2rem;
+    img {
+        margin: 1rem ;
+    }
+}
