@@ -27,9 +27,7 @@ const Thread = ({ meme, itsComment }) => {
         history.push(`${USER_PAGE}/${meme.user.username}`)
     }
 
-    const memeHeader = !itsComment
-        ? `${meme.user ? meme.user.username : 'Anonymous'}, ${meme.name}`
-        : `${meme.user ? meme.user.username : 'Anonymous'}`
+    const memeHeader = !itsComment ? `${meme.user ? meme.user.username : 'Anonymous'}, ` : `${meme.user ? meme.user.username : 'Anonymous'}`
     return (
         <SThread className="thread">
             <div className="thread__image">{meme.imageUrl ? <img src={meme.imageUrl} alt={meme.name} /> : <br />}</div>
@@ -37,7 +35,8 @@ const Thread = ({ meme, itsComment }) => {
                 <p className="thread__content__header">
                     <button type="button" onClick={handleUserPageClick}>
                         {memeHeader}
-                    </button>{' '}
+                    </button>
+                    <p>{meme.name}</p>
                     <span>{convertDate(meme)}</span>
                 </p>
                 <div className="thread__content__description">
@@ -45,8 +44,7 @@ const Thread = ({ meme, itsComment }) => {
                 </div>
                 {!itsComment && (
                     <button onClick={handleClick} className="thread__content__reply">
-                        {' '}
-                        Reply{' '}
+                        Reply
                     </button>
                 )}
                 {showPostComment && <PostMeme key="post-comment" id={meme._id} />}
