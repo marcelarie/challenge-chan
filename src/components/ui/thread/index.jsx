@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import './styles.scss'
 import SThread from './styled'
 import PostMeme from '../post-meme'
+import { useHistory } from 'react-router'
+import { USER_PAGE } from '../../../routes'
 
 const Thread = ({ meme, itsComment }) => {
     const [showPostComment, setShowPostComment] = useState(false)
+    const history = useHistory()
 
     function convertDate(meme) {
         const date = meme.createdAt || null
@@ -19,6 +22,11 @@ const Thread = ({ meme, itsComment }) => {
         setShowPostComment(!showPostComment)
     }
 
+    const handleUserPageClick = (event) => {
+        event.preventDefault()
+        history.push(`${USER_PAGE}/${meme.user.username}`)
+    }
+
     const memeHeader = !itsComment
         ? `${meme.user ? meme.user.username : 'Anonymous'}, ${meme.name}`
         : `${meme.user ? meme.user.username : 'Anonymous'}`
@@ -27,7 +35,10 @@ const Thread = ({ meme, itsComment }) => {
             <div className="thread__image">{meme.imageUrl ? <img src={meme.imageUrl} alt={meme.name} /> : <br />}</div>
             <div className="thread__content">
                 <p className="thread__content__header">
-                    {memeHeader} <span>{convertDate(meme)}</span>
+                    <button type="button" onClick={handleUserPageClick}>
+                        {memeHeader}
+                    </button>{' '}
+                    <span>{convertDate(meme)}</span>
                 </p>
                 <div className="thread__content__description">
                     <p>{meme.description}</p>

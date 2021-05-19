@@ -6,3 +6,11 @@ export function getUserMethod(id) {
         method: methods.GET,
     })
 }
+
+export function getUserByUsernameMethod(username) {
+    console.log(username)
+    return httpClient({
+        url: `/user/by-username/${username}`,
+        method: methods.GET,
+    })
+}

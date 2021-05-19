@@ -10,7 +10,7 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
 -   **Upload content page** ✅
     -   If the user is logged in, a **multimedia resource** can be **uploaded** from their **computer** or from a an **external link** ✅
 -   **Main Navbar** that will include:
-    -   **Content search bar**:
+    -   **Content search bar**: ✅
         -   You will have at least **three options** to filter the **main content**
     -   **Links** to the **main categories**
     -   **Information** of the **logged in user** ✅
@@ -54,7 +54,7 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
 -   [x] Fix no image comments
 -   [x] Fix undefined on comments
 -   [ ] Add zoom on image when clicking on them
--   [ ] Create search bar.
+-   [x] Create search bar.
 -   [ ] Create user page.
 -   [ ] Pages per topic
 -   [ ] Clean local storage on logout

@@ -20,11 +20,7 @@ export function postMeme(body) {
     return async (dispatch) => {
         dispatch(postMemeRequest())
         const { file, ...rest } = body
-        if (file) {
-            var { data } = await uploadFile(file)
-        } else {
-            var data = { url: '' }
-        }
+        const { data } = (await uploadFile(file)) || { data: { url: '' } }
         try {
             const result = await postMemeMethod({ ...rest, imageUrl: data.url })
             dispatch(postMemeSuccess(result.data))
