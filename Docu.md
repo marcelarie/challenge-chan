@@ -51,13 +51,14 @@ Doing this for the 48h tech challenge of [Assembler School](https://github.com/a
 
 # Wednesday 19 May
 
+-   [x] Fix no image comments
+-   [x] Fix undefined on comments
+-   [ ] Add zoom on image when clicking on them
 -   [ ] Create search bar.
 -   [ ] Create user page.
-- [ ] Pages per topic
+-   [ ] Pages per topic
 -   [ ] Clean local storage on logout
 -   [ ] Redesign
 -   [ ] Debugging
 -   [ ] Delivery
 -   [ ] Deploy (? maybe)
-
-

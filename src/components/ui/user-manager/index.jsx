@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { signOut } from '../../../redux/actions/auth'
 
 const UserManager = () => {
-    const { email } = useSelector(({ user }) => user)
+    const { username } = useSelector(({ user }) => user)
     const dispatch = useDispatch()
 
     const handleLogOut = () => {
@@ -11,8 +11,8 @@ const UserManager = () => {
     }
 
     return (
-        <div>
-            <h1>{email}</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <h3>{username} </h3>
             <button onClick={handleLogOut}>Log Out</button>
         </div>
     )

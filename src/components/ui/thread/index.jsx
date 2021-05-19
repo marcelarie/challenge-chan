@@ -3,7 +3,7 @@ import './styles.scss'
 import SThread from './styled'
 import PostMeme from '../post-meme'
 
-const Thread = ({ meme }) => {
+const Thread = ({ meme, itsComment }) => {
     const [showPostComment, setShowPostComment] = useState(false)
 
     function convertDate(meme) {
@@ -19,8 +19,9 @@ const Thread = ({ meme }) => {
         setShowPostComment(!showPostComment)
     }
 
-    const memeHeader = `${meme.user ? meme.user.username : 'Anonymous'}, ${meme.name}`
-
+    const memeHeader = !itsComment
+        ? `${meme.user ? meme.user.username : 'Anonymous'}, ${meme.name}`
+        : `${meme.user ? meme.user.username : 'Anonymous'}`
     return (
         <SThread className="thread">
             <div className="thread__image">{meme.imageUrl ? <img src={meme.imageUrl} alt={meme.name} /> : <br />}</div>
@@ -31,15 +32,18 @@ const Thread = ({ meme }) => {
                 <div className="thread__content__description">
                     <p>{meme.description}</p>
                 </div>
-                <button onClick={handleClick} className="thread__content__reply">
-                    Reply
-                </button>
-                {showPostComment && <PostMeme id={meme._id} />}
+                {!itsComment && (
+                    <button onClick={handleClick} className="thread__content__reply">
+                        {' '}
+                        Reply{' '}
+                    </button>
+                )}
+                {showPostComment && <PostMeme key="post-comment" id={meme._id} />}
 
                 <div className="thread__content__comments">
                     {meme.comments &&
                         meme.comments.map((comment) => {
-                            return <Thread meme={comment} />
+                            return <Thread key={comment.createdAt} meme={comment} itsComment={true} />
                         })}
                 </div>
             </div>

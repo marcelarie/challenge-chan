@@ -59,7 +59,7 @@ const PostMeme = ({ id }) => {
                     </>
                 )}
                 <button type="submit">Post</button>
-                <input type="file" required onChange={handleFileChange} />
+                <input type="file" onChange={handleFileChange} />
             </form>
         </div>
     )

@@ -9,8 +9,11 @@ export function postMemeMethod(data) {
 }
 
 export function getMemesMethod() {
-    return httpClient({
-        url: '/meme/all',
-        method: methods.GET,
-    },  false)
+    return httpClient(
+        {
+            url: '/meme/all',
+            method: methods.GET,
+        },
+        false
+    )
 }

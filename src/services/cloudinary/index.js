@@ -3,7 +3,6 @@ async function uploadFile(file) {
     const formData = new FormData()
     formData.append('upload_preset', 'bex3u0ru')
     formData.append('file', file, file.name)
-    formData.forEach((d) => console.log(d))
 
     const url = 'https://api.cloudinary.com/v1_1/challenge-chan/image/upload'
     const config = {

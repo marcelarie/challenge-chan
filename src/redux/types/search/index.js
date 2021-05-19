@@ -1,0 +1,5 @@
+export const SearchTypes = {
+    SEARCH_REQUEST: 'SEARCH_REQUEST',
+    SEARCH_ERROR: 'SEARCH_ERROR',
+    SEARCH_SUCCESS: 'SEARCH_SUCCESS',
+}

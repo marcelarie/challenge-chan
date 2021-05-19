@@ -6,6 +6,7 @@ import AuthManager from '../auth-manager'
 import UserManager from '../user-manager'
 
 import ThemeToggle from '../theme-toggle'
+import SearchBar from '../search-bar'
 import SNav from './styled'
 
 const Nav = () => {
@@ -22,8 +23,8 @@ const Nav = () => {
             <NavLink to={HOME}>
                 <button>/main</button>
             </NavLink>
-            {!authenticated &&
-            <button onClick={handleAuthToggle}>Login/Sign Up</button> }
+            <SearchBar />
+            {!authenticated && <button onClick={handleAuthToggle}>Login/Sign Up</button>}
             {!authenticated ? <AuthManager show={showAuth} /> : <UserManager />}
             <ThemeToggle />
         </SNav>
